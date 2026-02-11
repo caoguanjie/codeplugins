@@ -1,11 +1,11 @@
 {
-  "name": "openplugins",
+  "name": "codeplugins",
   "version": "1.0.0",
   "description": "CLI tool to install Claude Code plugins from GitHub repositories",
   "type": "module",
   "main": "./dist/cli.js",
   "bin": {
-    "openplugins": "./dist/cli.js"
+    "codeplugins": "./dist/cli.js"
   },
   "files": [
     "dist"
@@ -26,11 +26,11 @@
     "ai",
     "developer-tools"
   ],
-  "author": "",
+  "author": "caoguanjie",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/caoguanjie/openplugins.git"
   },
   "engines": {
     "node": ">=18.0.0"

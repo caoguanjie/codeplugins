@@ -10,7 +10,7 @@ export async function listCommand(): Promise<void> {
 
   if (!existsSync(pluginsDir)) {
     console.log(chalk.dim('No plugins directory found (.claude/plugins/)'));
-    console.log(chalk.dim('Install a plugin with: openplugins install <source>'));
+    console.log(chalk.dim('Install a plugin with: codeplugins install <source>'));
     return;
   }
 
@@ -19,7 +19,7 @@ export async function listCommand(): Promise<void> {
 
   if (dirs.length === 0) {
     console.log(chalk.dim('No plugins installed.'));
-    console.log(chalk.dim('Install a plugin with: openplugins install <source>'));
+    console.log(chalk.dim('Install a plugin with: codeplugins install <source>'));
     return;
   }
 

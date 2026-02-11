@@ -1,13 +1,13 @@
 <div align="center">
 
-# OpenPlugins
+# CodePlugins
 
 **Claude Code 插件的通用安装器**
 
 从 GitHub 快速安装 Claude Code 插件到您的项目中
 
-[![npm version](https://img.shields.io/npm/v/openplugins.svg)](https://www.npmjs.com/package/openplugins)
-[![npm downloads](https://img.shields.io/npm/dm/openplugins.svg)](https://www.npmjs.com/package/openplugins)
+[![npm version](https://img.shields.io/npm/v/codeplugins.svg)](https://www.npmjs.com/package/codeplugins)
+[![npm downloads](https://img.shields.io/npm/dm/codeplugins.svg)](https://www.npmjs.com/package/codeplugins)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 [快速开始](#-快速开始) · [工作原理](#-工作原理) · [命令](#-命令) · [常见问题](#-常见问题)
@@ -16,9 +16,9 @@
 
 ---
 
-## ✨ 什么是 OpenPlugins？
+## ✨ 什么是 CodePlugins？
 
-OpenPlugins 是一个命令行工具，用于从 GitHub 仓库快速安装 **Claude Code 插件**到您的项目中。
+CodePlugins 是一个命令行工具，用于从 GitHub 仓库快速安装 **Claude Code 插件**到您的项目中。
 
 **类似于 npm，但专为 Claude Code 插件设计。**
 
@@ -27,14 +27,14 @@ OpenPlugins 是一个命令行工具，用于从 GitHub 仓库快速安装 **Cla
 ## 🚀 快速开始
 
 ```bash
-npx openplugins install owner/repo
+npx codeplugins install owner/repo
 ```
 
 插件将被安装到 `.claude/plugins/` 目录，并自动配置到 `.claude/settings.local.json` 中。
 
 ---
 
-## ✅ 为什么选择 OpenPlugins
+## ✅ 为什么选择 CodePlugins
 
 - **自动配置** — 自动更新 `enabledPlugins` 和 `extraKnownMarketplaces`
 - **GitHub 集成** — 支持从任何 GitHub 仓库安装（HTTPS、SSH 或 owner/repo 简写）
@@ -100,25 +100,25 @@ npx openplugins install owner/repo
 ### 从 GitHub 仓库（简写）
 
 ```bash
-npx openplugins install owner/repo
+npx codeplugins install owner/repo
 ```
 
 ### 从 HTTPS URL
 
 ```bash
-npx openplugins install https://github.com/owner/repo.git
+npx codeplugins install https://github.com/owner/repo.git
 ```
 
 ### 从 SSH URL
 
 ```bash
-npx openplugins install git@github.com:owner/repo.git
+npx codeplugins install git@github.com:owner/repo.git
 ```
 
 ### 跳过确认提示
 
 ```bash
-npx openplugins install owner/repo -y
+npx codeplugins install owner/repo -y
 ```
 
 ---
@@ -128,7 +128,7 @@ npx openplugins install owner/repo -y
 ### `install` - 安装插件
 
 ```bash
-npx openplugins install <source> [options]
+npx codeplugins install <source> [options]
 ```
 
 从 GitHub 仓库安装插件。
@@ -141,9 +141,9 @@ npx openplugins install <source> [options]
 
 **示例：**
 ```bash
-npx openplugins install anthropics/example-plugin
-npx openplugins install https://github.com/user/plugin.git -y
-npx openplugins install git@github.com:org/private-plugin.git
+npx codeplugins install anthropics/example-plugin
+npx codeplugins install https://github.com/user/plugin.git -y
+npx codeplugins install git@github.com:org/private-plugin.git
 ```
 
 ---
@@ -151,7 +151,7 @@ npx openplugins install git@github.com:org/private-plugin.git
 ### `list` (别名: `ls`) - 列出已安装插件
 
 ```bash
-npx openplugins list
+npx codeplugins list
 ```
 
 显示所有已安装的插件及其启用状态。
@@ -169,7 +169,7 @@ Installed Plugins:
 ### `remove` (别名: `rm`) - 移除插件
 
 ```bash
-npx openplugins remove <name> [options]
+npx codeplugins remove <name> [options]
 ```
 
 移除已安装的插件并清理配置。
@@ -182,8 +182,8 @@ npx openplugins remove <name> [options]
 
 **示例：**
 ```bash
-npx openplugins remove my-marketplace:plugin-a
-npx openplugins remove plugin-b -y
+npx codeplugins remove my-marketplace:plugin-a
+npx codeplugins remove plugin-b -y
 ```
 
 **注意：** 此命令会：
@@ -230,7 +230,7 @@ your-project/
 
 ## ✅ 使用技巧
 
-- 使用 `npx` 运行 OpenPlugins，无需全局安装
+- 使用 `npx` 运行 CodePlugins，无需全局安装
 - 使用 `-y` 标志可在 CI/CD 环境中自动化安装
 - 插件名称区分大小写，确保使用正确的大小写
 - 移除插件前使用 `list` 命令查看已安装的插件
@@ -239,15 +239,15 @@ your-project/
 
 ## ❓ 常见问题
 
-### OpenPlugins 和 OpenSkills 有什么区别？
+### CodePlugins 和 OpenSkills 有什么区别？
 
 **OpenSkills** 安装 skills（技能），这些是包含 `SKILL.md` 的指令文件。
 
-**OpenPlugins** 安装 plugins（插件），这些是 Claude Code 的扩展，包含完整的功能模块。
+**CodePlugins** 安装 plugins（插件），这些是 Claude Code 的扩展，包含完整的功能模块。
 
 两者使用不同的目录结构和配置方式：
 - OpenSkills → `.claude/skills/` + `AGENTS.md`
-- OpenPlugins → `.claude/plugins/` + `.claude/settings.local.json`
+- CodePlugins → `.claude/plugins/` + `.claude/settings.local.json`
 
 ### 插件安装在哪里？
 
@@ -258,8 +258,8 @@ your-project/
 目前需要先移除再重新安装：
 
 ```bash
-npx openplugins remove plugin-name
-npx openplugins install owner/repo
+npx codeplugins remove plugin-name
+npx codeplugins install owner/repo
 ```
 
 ### 支持私有仓库吗？
@@ -267,14 +267,14 @@ npx openplugins install owner/repo
 支持！使用 SSH URL 格式：
 
 ```bash
-npx openplugins install git@github.com:your-org/private-plugin.git
+npx codeplugins install git@github.com:your-org/private-plugin.git
 ```
 
 确保您的 SSH 密钥已配置并有权限访问该仓库。
 
 ### 为什么需要 `.claude-plugin/` 目录？
 
-`.claude-plugin/` 目录包含插件的元数据，OpenPlugins 使用这些信息来：
+`.claude-plugin/` 目录包含插件的元数据，CodePlugins 使用这些信息来：
 - 识别市场名称（`marketplace.json`）
 - 列出可用的插件（`marketplace.json` 中的 `plugins` 数组）
 - 读取单个插件的信息（`plugin.json`）
@@ -320,6 +320,6 @@ MIT License
 
 ## 🙏 致谢
 
-OpenPlugins 为 Claude Code 插件生态系统提供便捷的安装体验。
+CodePlugins 为 Claude Code 插件生态系统提供便捷的安装体验。
 
 **与 Anthropic 无关联。** Claude 和 Claude Code 是 Anthropic, PBC 的商标。

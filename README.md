@@ -1,13 +1,13 @@
 <div align="center">
 
-# OpenPlugins
+# CodePlugins
 
 **Universal plugin installer for Claude Code**
 
 Install MCP plugins from GitHub with one command.
 
-[![npm version](https://img.shields.io/npm/v/openplugins.svg)](https://www.npmjs.com/package/openplugins)
-[![npm downloads](https://img.shields.io/npm/dm/openplugins.svg)](https://www.npmjs.com/package/openplugins)
+[![npm version](https://img.shields.io/npm/v/codeplugins.svg)](https://www.npmjs.com/package/codeplugins)
+[![npm downloads](https://img.shields.io/npm/dm/codeplugins.svg)](https://www.npmjs.com/package/codeplugins)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 [Quick Start](#-quick-start) · [How It Works](#-how-it-works) · [Commands](#-commands) · [Examples](#-examples) · [FAQ](#-faq)
@@ -16,9 +16,9 @@ Install MCP plugins from GitHub with one command.
 
 ---
 
-## ✨ What Is OpenPlugins?
+## ✨ What Is CodePlugins?
 
-OpenPlugins is a CLI tool that makes installing **Claude Code plugins** from GitHub effortless.
+CodePlugins is a CLI tool that makes installing **Claude Code plugins** from GitHub effortless.
 
 **Think of it as npm install for Claude Code plugins.**
 
@@ -29,17 +29,17 @@ Instead of manually cloning repos, editing config files, and managing paths — 
 ## 🚀 Quick Start
 
 ```bash
-npx openplugins install owner/repo
+npx codeplugins install owner/repo
 ```
 
-That's it. OpenPlugins will:
+That's it. CodePlugins will:
 - Clone the plugin repo into `.claude/plugins/`
 - Read the plugin metadata
 - Update your `.claude/settings.local.json` automatically
 
 ---
 
-## ✅ Why OpenPlugins
+## ✅ Why CodePlugins
 
 - **Zero config** — automatically sets up `enabledPlugins` and `extraKnownMarketplaces`
 - **GitHub-native** — install from any public or private GitHub repo
@@ -65,7 +65,7 @@ my-plugin/
     └── index.ts            # Plugin implementation
 ```
 
-### OpenPlugins Installation Flow
+### CodePlugins Installation Flow
 
 1. **Parse input** — converts `owner/repo` to `https://github.com/owner/repo.git`
 2. **Clone repo** — runs `git clone --depth 1` into `.claude/plugins/{repo-name}/`
@@ -77,13 +77,13 @@ my-plugin/
 
 ### Side-by-Side
 
-| Aspect | Manual Install | OpenPlugins |
+| Aspect | Manual Install | CodePlugins |
 |--------|----------------|-------------|
 | **Clone** | `git clone` manually | Automatic |
 | **Config** | Edit JSON by hand | Automatic |
 | **Multiple plugins** | Pick one manually | Interactive prompt |
-| **Uninstall** | Delete folder + edit config | `openplugins remove` |
-| **List plugins** | Check config manually | `openplugins list` |
+| **Uninstall** | Delete folder + edit config | `codeplugins remove` |
+| **List plugins** | Check config manually | `codeplugins list` |
 
 ---
 
@@ -93,16 +93,16 @@ my-plugin/
 
 ```bash
 # From GitHub (shorthand)
-npx openplugins install owner/repo
+npx codeplugins install owner/repo
 
 # From GitHub (HTTPS)
-npx openplugins install https://github.com/owner/repo.git
+npx codeplugins install https://github.com/owner/repo.git
 
 # From GitHub (SSH)
-npx openplugins install git@github.com:owner/repo.git
+npx codeplugins install git@github.com:owner/repo.git
 
 # Skip prompts (for CI)
-npx openplugins install owner/repo -y
+npx codeplugins install owner/repo -y
 ```
 
 **Options:**
@@ -111,9 +111,9 @@ npx openplugins install owner/repo -y
 ### List Installed Plugins
 
 ```bash
-npx openplugins list
+npx codeplugins list
 # or
-npx openplugins ls
+npx codeplugins ls
 ```
 
 Shows all installed plugins with their enabled status.
@@ -121,12 +121,12 @@ Shows all installed plugins with their enabled status.
 ### Remove a Plugin
 
 ```bash
-npx openplugins remove plugin-name
+npx codeplugins remove plugin-name
 # or
-npx openplugins rm plugin-name
+npx codeplugins rm plugin-name
 
 # Skip confirmation
-npx openplugins remove plugin-name -y
+npx codeplugins remove plugin-name -y
 ```
 
 Removes the plugin folder and cleans up `.claude/settings.local.json`.
@@ -139,9 +139,9 @@ Removes the plugin folder and cleans up `.claude/settings.local.json`.
 ## 🧰 Full Command Reference
 
 ```bash
-npx openplugins install <source> [options]  # Install plugin from GitHub
-npx openplugins list                        # List installed plugins (alias: ls)
-npx openplugins remove <name> [options]     # Remove plugin (alias: rm)
+npx codeplugins install <source> [options]  # Install plugin from GitHub
+npx codeplugins list                        # List installed plugins (alias: ls)
+npx codeplugins remove <name> [options]     # Remove plugin (alias: rm)
 ```
 
 ### Supported Source Formats
@@ -159,7 +159,7 @@ npx openplugins remove <name> [options]     # Remove plugin (alias: rm)
 ### Install a plugin
 
 ```bash
-$ npx openplugins install anthropics/example-plugin
+$ npx codeplugins install anthropics/example-plugin
 ✔ Cloning repository...
 ✔ Reading plugin metadata...
 ✔ Plugin installed: example-plugin
@@ -169,7 +169,7 @@ $ npx openplugins install anthropics/example-plugin
 ### Install from a private repo (SSH)
 
 ```bash
-$ npx openplugins install git@github.com:myorg/private-plugin.git
+$ npx codeplugins install git@github.com:myorg/private-plugin.git
 ✔ Cloning repository...
 ✔ Reading plugin metadata...
 ✔ Plugin installed: private-plugin
@@ -179,7 +179,7 @@ $ npx openplugins install git@github.com:myorg/private-plugin.git
 ### List installed plugins
 
 ```bash
-$ npx openplugins list
+$ npx codeplugins list
 Installed plugins:
 ✓ example-plugin (enabled)
 ✓ another-plugin (enabled)
@@ -189,7 +189,7 @@ Installed plugins:
 ### Remove a plugin
 
 ```bash
-$ npx openplugins remove example-plugin
+$ npx codeplugins remove example-plugin
 ? Are you sure you want to remove example-plugin? Yes
 ✔ Removed plugin: example-plugin
 ✔ Updated .claude/settings.local.json
@@ -220,7 +220,7 @@ your-project/
 
 ## 🔍 Plugin Metadata Format
 
-OpenPlugins reads two key files from each plugin repo:
+CodePlugins reads two key files from each plugin repo:
 
 ### `.claude-plugin/marketplace.json`
 
@@ -252,7 +252,7 @@ OpenPlugins reads two key files from each plugin repo:
 
 ## ⚙️ Configuration
 
-OpenPlugins updates `.claude/settings.local.json` automatically:
+CodePlugins updates `.claude/settings.local.json` automatically:
 
 ```json
 {
@@ -282,25 +282,25 @@ Manual installation requires:
 4. Add the plugin to `enabledPlugins`
 5. Add the marketplace to `extraKnownMarketplaces`
 
-OpenPlugins does all of this in one command.
+CodePlugins does all of this in one command.
 
 ### Can I install from private repos?
 
 Yes. Use SSH URLs:
 
 ```bash
-npx openplugins install git@github.com:your-org/private-plugin.git
+npx codeplugins install git@github.com:your-org/private-plugin.git
 ```
 
 Make sure your SSH keys are configured with GitHub.
 
 ### What if a repo has multiple plugins?
 
-OpenPlugins will show an interactive prompt to choose which plugin to install.
+CodePlugins will show an interactive prompt to choose which plugin to install.
 
 ### Can I install multiple plugins at once?
 
-Not yet. Run `openplugins install` multiple times for now.
+Not yet. Run `codeplugins install` multiple times for now.
 
 ### Where are plugins installed?
 
@@ -308,17 +308,17 @@ Plugins are installed to `.claude/plugins/` in your current working directory.
 
 ### Does this work with Claude Desktop?
 
-OpenPlugins is designed for Claude Code (the CLI tool). For Claude Desktop, check the official plugin documentation.
+CodePlugins is designed for Claude Code (the CLI tool). For Claude Desktop, check the official plugin documentation.
 
 ### How do I update an installed plugin?
 
 Re-run the install command:
 
 ```bash
-npx openplugins install owner/repo
+npx codeplugins install owner/repo
 ```
 
-OpenPlugins will re-clone the latest version.
+CodePlugins will re-clone the latest version.
 
 ---
 

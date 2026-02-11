@@ -6,7 +6,7 @@ import { removeCommand } from './commands/remove.js';
 const program = new Command();
 
 program
-  .name('openplugins')
+  .name('codeplugins')
   .description('CLI tool to install Claude Code plugins from GitHub')
   .version('1.0.0')
   .showHelpAfterError(false)
