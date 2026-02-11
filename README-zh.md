@@ -10,6 +10,8 @@
 [![npm downloads](https://img.shields.io/npm/dm/codeplugins.svg)](https://www.npmjs.com/package/codeplugins)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
+[English](README.md) · [简体中文](README-zh.md)
+
 [快速开始](#-快速开始) · [工作原理](#-工作原理) · [命令](#-命令) · [常见问题](#-常见问题)
 
 </div>
@@ -26,11 +28,34 @@ CodePlugins 是一个命令行工具，用于从 GitHub 仓库快速安装 **Cla
 
 ## 🚀 快速开始
 
+### 方式一：全局安装（推荐）
+
 ```bash
+# 全局安装 codeplugins
+npm install -g codeplugins
+
+# 直接使用命令
+codeplugins install owner/repo
+```
+
+### 方式二：使用 npx（一次性运行）
+
+```bash
+# 无需安装，直接使用
 npx codeplugins install owner/repo
 ```
 
-插件将被安装到 `.claude/plugins/` 目录，并自动配置到 `.claude/settings.local.json` 中。
+### 两种方式的区别
+
+| 方式 | 命令 | 优点 | 适用场景 |
+|------|------|------|----------|
+| **全局安装** | `codeplugins` | 启动更快，无需重复下载 | 频繁使用插件管理 |
+| **npx运行** | `npx codeplugins` | 无需安装，总是使用最新版本 | 偶尔使用或CI环境 |
+
+CodePlugins 会自动：
+- 克隆插件仓库到 `.claude/plugins/`
+- 读取插件元数据
+- 自动更新 `.claude/settings.local.json` 配置
 
 ---
 
@@ -97,28 +122,30 @@ npx codeplugins install owner/repo
 
 ## 🔧 安装插件
 
+> **提示**：以下命令示例使用 `codeplugins`（全局安装）。如果使用 npx 方式，请将 `codeplugins` 替换为 `npx codeplugins`。
+
 ### 从 GitHub 仓库（简写）
 
 ```bash
-npx codeplugins install owner/repo
+codeplugins install owner/repo
 ```
 
 ### 从 HTTPS URL
 
 ```bash
-npx codeplugins install https://github.com/owner/repo.git
+codeplugins install https://github.com/owner/repo.git
 ```
 
 ### 从 SSH URL
 
 ```bash
-npx codeplugins install git@github.com:owner/repo.git
+codeplugins install git@github.com:owner/repo.git
 ```
 
 ### 跳过确认提示
 
 ```bash
-npx codeplugins install owner/repo -y
+codeplugins install owner/repo -y
 ```
 
 ---
@@ -128,7 +155,7 @@ npx codeplugins install owner/repo -y
 ### `install` - 安装插件
 
 ```bash
-npx codeplugins install <source> [options]
+codeplugins install <source> [options]
 ```
 
 从 GitHub 仓库安装插件。
@@ -141,9 +168,9 @@ npx codeplugins install <source> [options]
 
 **示例：**
 ```bash
-npx codeplugins install anthropics/example-plugin
-npx codeplugins install https://github.com/user/plugin.git -y
-npx codeplugins install git@github.com:org/private-plugin.git
+codeplugins install anthropics/example-plugin
+codeplugins install https://github.com/user/plugin.git -y
+codeplugins install git@github.com:org/private-plugin.git
 ```
 
 ---
@@ -151,7 +178,7 @@ npx codeplugins install git@github.com:org/private-plugin.git
 ### `list` (别名: `ls`) - 列出已安装插件
 
 ```bash
-npx codeplugins list
+codeplugins list
 ```
 
 显示所有已安装的插件及其启用状态。
@@ -169,7 +196,7 @@ Installed Plugins:
 ### `remove` (别名: `rm`) - 移除插件
 
 ```bash
-npx codeplugins remove <name> [options]
+codeplugins remove <name> [options]
 ```
 
 移除已安装的插件并清理配置。
@@ -182,8 +209,8 @@ npx codeplugins remove <name> [options]
 
 **示例：**
 ```bash
-npx codeplugins remove my-marketplace:plugin-a
-npx codeplugins remove plugin-b -y
+codeplugins remove my-marketplace:plugin-a
+codeplugins remove plugin-b -y
 ```
 
 **注意：** 此命令会：
@@ -230,7 +257,8 @@ your-project/
 
 ## ✅ 使用技巧
 
-- 使用 `npx` 运行 CodePlugins，无需全局安装
+- 推荐全局安装 `npm install -g codeplugins`，启动更快
+- 偶尔使用可用 `npx codeplugins`，无需安装
 - 使用 `-y` 标志可在 CI/CD 环境中自动化安装
 - 插件名称区分大小写，确保使用正确的大小写
 - 移除插件前使用 `list` 命令查看已安装的插件
@@ -258,8 +286,8 @@ your-project/
 目前需要先移除再重新安装：
 
 ```bash
-npx codeplugins remove plugin-name
-npx codeplugins install owner/repo
+codeplugins remove plugin-name
+codeplugins install owner/repo
 ```
 
 ### 支持私有仓库吗？
@@ -267,7 +295,7 @@ npx codeplugins install owner/repo
 支持！使用 SSH URL 格式：
 
 ```bash
-npx codeplugins install git@github.com:your-org/private-plugin.git
+codeplugins install git@github.com:your-org/private-plugin.git
 ```
 
 确保您的 SSH 密钥已配置并有权限访问该仓库。

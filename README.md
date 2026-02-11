@@ -10,6 +10,8 @@ Install MCP plugins from GitHub with one command.
 [![npm downloads](https://img.shields.io/npm/dm/codeplugins.svg)](https://www.npmjs.com/package/codeplugins)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
+[English](README.md) · [简体中文](README-zh.md)
+
 [Quick Start](#-quick-start) · [How It Works](#-how-it-works) · [Commands](#-commands) · [Examples](#-examples) · [FAQ](#-faq)
 
 </div>
@@ -28,11 +30,31 @@ Instead of manually cloning repos, editing config files, and managing paths — 
 
 ## 🚀 Quick Start
 
+### Option 1: Global Install (Recommended)
+
 ```bash
+# Install globally
+npm install -g codeplugins
+
+# Use directly
+codeplugins install owner/repo
+```
+
+### Option 2: Use with npx (One-time)
+
+```bash
+# No installation needed
 npx codeplugins install owner/repo
 ```
 
-That's it. CodePlugins will:
+### Comparison
+
+| Method | Command | Advantages | Use Case |
+|--------|---------|------------|----------|
+| **Global Install** | `codeplugins` | Faster startup, no repeated downloads | Frequent plugin management |
+| **npx** | `npx codeplugins` | No installation, always latest version | Occasional use or CI environments |
+
+CodePlugins will automatically:
 - Clone the plugin repo into `.claude/plugins/`
 - Read the plugin metadata
 - Update your `.claude/settings.local.json` automatically
@@ -89,20 +111,22 @@ my-plugin/
 
 ## 🔧 Commands
 
+> **Note**: The following examples use `codeplugins` (global install). If using npx, replace `codeplugins` with `npx codeplugins`.
+
 ### Install a Plugin
 
 ```bash
 # From GitHub (shorthand)
-npx codeplugins install owner/repo
+codeplugins install owner/repo
 
 # From GitHub (HTTPS)
-npx codeplugins install https://github.com/owner/repo.git
+codeplugins install https://github.com/owner/repo.git
 
 # From GitHub (SSH)
-npx codeplugins install git@github.com:owner/repo.git
+codeplugins install git@github.com:owner/repo.git
 
 # Skip prompts (for CI)
-npx codeplugins install owner/repo -y
+codeplugins install owner/repo -y
 ```
 
 **Options:**
@@ -111,9 +135,9 @@ npx codeplugins install owner/repo -y
 ### List Installed Plugins
 
 ```bash
-npx codeplugins list
+codeplugins list
 # or
-npx codeplugins ls
+codeplugins ls
 ```
 
 Shows all installed plugins with their enabled status.
@@ -121,12 +145,12 @@ Shows all installed plugins with their enabled status.
 ### Remove a Plugin
 
 ```bash
-npx codeplugins remove plugin-name
+codeplugins remove plugin-name
 # or
-npx codeplugins rm plugin-name
+codeplugins rm plugin-name
 
 # Skip confirmation
-npx codeplugins remove plugin-name -y
+codeplugins remove plugin-name -y
 ```
 
 Removes the plugin folder and cleans up `.claude/settings.local.json`.
@@ -139,10 +163,12 @@ Removes the plugin folder and cleans up `.claude/settings.local.json`.
 ## 🧰 Full Command Reference
 
 ```bash
-npx codeplugins install <source> [options]  # Install plugin from GitHub
-npx codeplugins list                        # List installed plugins (alias: ls)
-npx codeplugins remove <name> [options]     # Remove plugin (alias: rm)
+codeplugins install <source> [options]  # Install plugin from GitHub
+codeplugins list                        # List installed plugins (alias: ls)
+codeplugins remove <name> [options]     # Remove plugin (alias: rm)
 ```
+
+> When using npx, replace `codeplugins` with `npx codeplugins`.
 
 ### Supported Source Formats
 
@@ -159,7 +185,7 @@ npx codeplugins remove <name> [options]     # Remove plugin (alias: rm)
 ### Install a plugin
 
 ```bash
-$ npx codeplugins install anthropics/example-plugin
+$ codeplugins install anthropics/example-plugin
 ✔ Cloning repository...
 ✔ Reading plugin metadata...
 ✔ Plugin installed: example-plugin
@@ -169,7 +195,7 @@ $ npx codeplugins install anthropics/example-plugin
 ### Install from a private repo (SSH)
 
 ```bash
-$ npx codeplugins install git@github.com:myorg/private-plugin.git
+$ codeplugins install git@github.com:myorg/private-plugin.git
 ✔ Cloning repository...
 ✔ Reading plugin metadata...
 ✔ Plugin installed: private-plugin
@@ -179,7 +205,7 @@ $ npx codeplugins install git@github.com:myorg/private-plugin.git
 ### List installed plugins
 
 ```bash
-$ npx codeplugins list
+$ codeplugins list
 Installed plugins:
 ✓ example-plugin (enabled)
 ✓ another-plugin (enabled)
@@ -189,7 +215,7 @@ Installed plugins:
 ### Remove a plugin
 
 ```bash
-$ npx codeplugins remove example-plugin
+$ codeplugins remove example-plugin
 ? Are you sure you want to remove example-plugin? Yes
 ✔ Removed plugin: example-plugin
 ✔ Updated .claude/settings.local.json
@@ -289,7 +315,7 @@ CodePlugins does all of this in one command.
 Yes. Use SSH URLs:
 
 ```bash
-npx codeplugins install git@github.com:your-org/private-plugin.git
+codeplugins install git@github.com:your-org/private-plugin.git
 ```
 
 Make sure your SSH keys are configured with GitHub.
@@ -315,7 +341,7 @@ CodePlugins is designed for Claude Code (the CLI tool). For Claude Desktop, chec
 Re-run the install command:
 
 ```bash
-npx codeplugins install owner/repo
+codeplugins install owner/repo
 ```
 
 CodePlugins will re-clone the latest version.
