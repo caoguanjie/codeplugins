@@ -1,0 +1,42 @@
+{
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "allow": [
+      "Bash(echo:*)",
+      "Read(/Users/fits-vue/.config/claude-code/mcp.json)",
+      "Read(/Users/fits-vue/.cursor/mcp.json)",
+      "Bash(ls:*)",
+      "Edit",
+      "Bash(cd:*)",
+      "Skill(canvas-design)",
+      "Read(/Users/fits-vue/.claude/skills/pptx/html2pptx.md)",
+      "Read(/Users/fits-vue/.claude.json)",
+      "Bash(mkdir:*)",
+      "Read(/Users/fits-vue/.zcode/bundled-agents/manifest.json)",
+      "Read(/Users/fits-vue/Library/Application Support/ai.z.zcode/store.json)",
+      "Bash(pandoc:*)"
+    ],
+    "defaultMode": "bypassPermissions"
+  },
+  "enabledPlugins": {
+    "glm-plan-usage@zai-coding-plugins": true,
+    "mytest@mytest-dev": true,
+    "superpowers@superpowers-dev": true
+  },
+  "alwaysThinkingEnabled": true,
+  "bypassPermissions": true,
+  "extraKnownMarketplaces": {
+    "mytest-dev": {
+      "source": {
+        "source": "directory",
+        "path": ".claude/plugins/mytest"
+      }
+    },
+    "superpowers-dev": {
+      "source": {
+        "source": "directory",
+        "path": ".claude/plugins/superpowers"
+      }
+    }
+  }
+}

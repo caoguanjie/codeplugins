@@ -1,0 +1,50 @@
+{
+  "name": "openplugins",
+  "version": "1.0.0",
+  "description": "CLI tool to install Claude Code plugins from GitHub repositories",
+  "type": "module",
+  "main": "./dist/cli.js",
+  "bin": {
+    "openplugins": "./dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run typecheck && npm run build && npm test"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "plugins",
+    "installer",
+    "ai",
+    "developer-tools"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^7.9.0",
+    "chalk": "^5.6.2",
+    "commander": "^12.1.0",
+    "ora": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  }
+}
