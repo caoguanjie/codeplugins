@@ -666,7 +666,7 @@ CodePlugins 专为 Claude Code（CLI 工具）设计。如需在 Claude Desktop 
 
 如果 CodePlugins 帮助你更好地管理 Claude Code 插件，欢迎给项目点个 **Star** —— 这能让更多人发现这个工具，也是对持续开发的最大鼓励。
 
-[![Star on GitHub](https://img.shields.io/github/stars/anthropics-fans/codeplugins?style=social)](https://github.com/anthropics-fans/codeplugins)
+[![Star on GitHub](https://img.shields.io/github/stars/caoguanjie/codeplugins?style=social)](https://github.com/caoguanjie/codeplugins)
 
 ---
 

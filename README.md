@@ -667,7 +667,7 @@ They use different directory structures and configuration:
 
 If CodePlugins helps you manage your Claude Code plugins better, consider giving it a **star** on GitHub — it helps others discover this tool and motivates continued development.
 
-[![Star on GitHub](https://img.shields.io/github/stars/anthropics-fans/codeplugins?style=social)](https://github.com/anthropics-fans/codeplugins)
+[![Star on GitHub](https://img.shields.io/github/stars/caoguanjie/codeplugins?style=social)](https://github.com/caoguanjie/codeplugins)
 
 ---
 
