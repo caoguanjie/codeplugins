@@ -1,9 +1,6 @@
 <div align="center">
 
-<img src="./assets/logo.png" alt="CodePlugins" width="420" />
 
-<br/>
-<br/>
 
 # CodePlugins
 
@@ -19,6 +16,10 @@ Install, customize, sync, and share — all-in-one Claude Code plugin management
 
 [Quick Start](#quick-start) · [How It Works](#how-it-works) · [Commands](#commands) · [Team Collaboration](#team-collaboration) · [Examples](#examples) · [FAQ](#faq)
 
+<img src="./assets/logo.png" alt="CodePlugins" width="800" />
+
+<br/>
+<br/>
 </div>
 
 ---
