@@ -103,6 +103,14 @@ export async function syncCommand(
     const marketplaceName = marketplace.name;
 
     for (const plugin of marketplace.plugins) {
+      // Validate required fields
+      if (!plugin.name || !plugin.version) {
+        console.log(
+          `  ${chalk.yellow('⚠')} ${plugin.name || 'unnamed'}@${marketplaceName} ${chalk.dim('(missing name or version, skipped)')}`
+        );
+        continue;
+      }
+
       const spinner = ora(
         `Syncing ${plugin.name}@${marketplaceName} v${plugin.version}`
       ).start();
@@ -112,7 +120,7 @@ export async function syncCommand(
         marketplaceName,
         plugin.name,
         plugin.version,
-        plugin.source
+        plugin.source || './'
       );
 
       if (ok) {

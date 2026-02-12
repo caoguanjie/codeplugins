@@ -1,4 +1,4 @@
-import { join, resolve } from 'path';
+import { join, resolve, sep } from 'path';
 import { homedir } from 'os';
 
 /**
@@ -51,7 +51,7 @@ export function getRelativePluginPath(folderName: string): string {
 export function isPathWithinDir(targetPath: string, parentDir: string): boolean {
   const resolvedTarget = resolve(targetPath);
   const resolvedParent = resolve(parentDir);
-  return resolvedTarget.startsWith(resolvedParent + '/') || resolvedTarget === resolvedParent;
+  return resolvedTarget.startsWith(resolvedParent + sep) || resolvedTarget === resolvedParent;
 }
 
 /**
