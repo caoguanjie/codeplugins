@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import { confirm, checkbox } from '@inquirer/prompts';
 import { ExitPromptError } from '@inquirer/core';
 import { parseSource, cloneRepo } from '../utils/git.js';
-import { readMarketplaceJson } from '../utils/plugin-meta.js';
+import { readMarketplaceJson, patchMarketplaceJson } from '../utils/plugin-meta.js';
 import {
   readSettings,
   writeSettings,
@@ -53,8 +53,8 @@ export async function installCommand(
   cloneRepo(url, pluginDir);
 
   // 4. Read marketplace.json
-  const marketplace = readMarketplaceJson(pluginDir);
-  if (!marketplace) {
+  const rawMarketplace = readMarketplaceJson(pluginDir);
+  if (!rawMarketplace) {
     console.error(
       chalk.red(
         'Error: No .claude-plugin/marketplace.json found in cloned repository'
@@ -67,11 +67,26 @@ export async function installCommand(
     process.exit(1);
   }
 
+  // 5. Patch marketplace name to avoid conflicts with official registries
+  const marketplace = patchMarketplaceJson(pluginDir);
+  if (!marketplace) {
+    console.error(
+      chalk.red('Error: Failed to patch marketplace.json name')
+    );
+    rmSync(pluginDir, { recursive: true, force: true });
+    process.exit(1);
+  }
+
   const marketplaceName = marketplace.name;
   console.log(`\nMarketplace: ${chalk.bold(marketplaceName)}`);
+  if (marketplaceName !== rawMarketplace.name) {
+    console.log(
+      chalk.dim(`  (renamed from "${rawMarketplace.name}" to avoid conflicts with official registry)`)
+    );
+  }
   console.log(`Description: ${chalk.dim(marketplace.description)}`);
 
-  // 5. Select plugins to enable
+  // 6. Select plugins to enable
   let selectedPlugins: PluginEntry[];
 
   if (marketplace.plugins.length === 0) {
@@ -116,7 +131,7 @@ export async function installCommand(
     }
   }
 
-  // 6. Update settings.local.json
+  // 7. Update settings.local.json
   let settings = readSettings();
   const relativePath = getRelativePluginPath(repoName);
 
