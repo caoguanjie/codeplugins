@@ -1,4 +1,5 @@
 import { join, resolve } from 'path';
+import { homedir } from 'os';
 
 /**
  * Convert a path to POSIX-style (forward slashes).
@@ -51,4 +52,24 @@ export function isPathWithinDir(targetPath: string, parentDir: string): boolean 
   const resolvedTarget = resolve(targetPath);
   const resolvedParent = resolve(parentDir);
   return resolvedTarget.startsWith(resolvedParent + '/') || resolvedTarget === resolvedParent;
+}
+
+/**
+ * Get the user-level Claude plugins cache directory.
+ * e.g., ~/.claude/plugins/cache
+ */
+export function getUserCacheDir(): string {
+  return join(homedir(), '.claude', 'plugins', 'cache');
+}
+
+/**
+ * Get the cache directory for a specific plugin version.
+ * e.g., ~/.claude/plugins/cache/{marketplaceName}/{pluginName}/{version}
+ */
+export function getPluginCacheDir(
+  marketplaceName: string,
+  pluginName: string,
+  version: string
+): string {
+  return join(getUserCacheDir(), marketplaceName, pluginName, version);
 }

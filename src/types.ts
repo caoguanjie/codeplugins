@@ -43,3 +43,7 @@ export interface InstallOptions {
 export interface RemoveOptions {
   yes?: boolean;
 }
+
+export interface SyncOptions {
+  yes?: boolean;
+}

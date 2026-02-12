@@ -2,6 +2,7 @@ import { Command } from 'commander';
 import { installCommand } from './commands/install.js';
 import { listCommand } from './commands/list.js';
 import { removeCommand } from './commands/remove.js';
+import { syncCommand } from './commands/sync.js';
 
 const program = new Command();
 
@@ -49,5 +50,13 @@ program
   .description('Remove an installed plugin and clean up config')
   .option('-y, --yes', 'Skip confirmation prompt')
   .action(removeCommand);
+
+program
+  .command('sync [name]')
+  .description(
+    'Sync project-level plugins to user-level cache (~/.claude/plugins/cache/)'
+  )
+  .option('-y, --yes', 'Skip confirmation prompt')
+  .action(syncCommand);
 
 program.parse();
