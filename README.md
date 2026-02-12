@@ -12,7 +12,7 @@ Install, customize, sync, and share — all-in-one Claude Code plugin management
 [![npm downloads](https://img.shields.io/npm/dm/codeplugins.svg)](https://www.npmjs.com/package/codeplugins)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-[English](README.md) · [简体中文](README-zh.md)
+[English](README.md) · [简体中文](README-zh.md) · [📖 Story](https://mp.weixin.qq.com/s/Dgag5aUU1rHrHobp5myyFQ)
 
 [Quick Start](#quick-start) · [How It Works](#how-it-works) · [Commands](#commands) · [Team Collaboration](#team-collaboration) · [Examples](#examples) · [FAQ](#faq)
 

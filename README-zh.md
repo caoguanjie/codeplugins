@@ -10,10 +10,15 @@
 [![npm downloads](https://img.shields.io/npm/dm/codeplugins.svg)](https://www.npmjs.com/package/codeplugins)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-[English](README.md) · [简体中文](README-zh.md)
+[English](README.md) · [简体中文](README-zh.md) · [📖 项目由来](https://mp.weixin.qq.com/s/Dgag5aUU1rHrHobp5myyFQ)
 
 [快速开始](#快速开始) · [工作原理](#工作原理) · [命令详解](#命令详解) · [团队协作](#团队协作) · [使用示例](#使用示例) · [常见问题](#常见问题)
 
+
+<img src="./assets/logo.png" alt="CodePlugins" width="800" />
+
+<br/>
+<br/>
 </div>
 
 ---
