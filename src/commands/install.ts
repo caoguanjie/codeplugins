@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import { confirm, checkbox } from '@inquirer/prompts';
 import { ExitPromptError } from '@inquirer/core';
 import { parseSource, cloneRepo } from '../utils/git.js';
-import { readMarketplaceJson, patchMarketplaceJson } from '../utils/plugin-meta.js';
+import { readMarketplaceJson, patchMarketplaceJson, ensurePluginVersions } from '../utils/plugin-meta.js';
 import {
   readSettings,
   writeSettings,
@@ -77,27 +77,37 @@ export async function installCommand(
     process.exit(1);
   }
 
-  const marketplaceName = marketplace.name;
+  // 5.5. Ensure every plugin entry has a version
+  const versionChecked = ensurePluginVersions(pluginDir);
+  if (!versionChecked) {
+    console.error(
+      chalk.red('Error: Failed to ensure plugin versions in marketplace.json')
+    );
+    rmSync(pluginDir, { recursive: true, force: true });
+    process.exit(1);
+  }
+
+  const marketplaceName = versionChecked.name;
   console.log(`\nMarketplace: ${chalk.bold(marketplaceName)}`);
   if (marketplaceName !== rawMarketplace.name) {
     console.log(
       chalk.dim(`  (renamed from "${rawMarketplace.name}" to avoid conflicts with official registry)`)
     );
   }
-  console.log(`Description: ${chalk.dim(marketplace.description)}`);
+  console.log(`Description: ${chalk.dim(versionChecked.description)}`);
 
   // 6. Select plugins to enable
   let selectedPlugins: PluginEntry[];
 
-  if (marketplace.plugins.length === 0) {
+  if (versionChecked.plugins.length === 0) {
     console.error(chalk.red('Error: No plugins defined in marketplace.json'));
     process.exit(1);
-  } else if (marketplace.plugins.length === 1 || options.yes) {
-    selectedPlugins = marketplace.plugins;
+  } else if (versionChecked.plugins.length === 1 || options.yes) {
+    selectedPlugins = versionChecked.plugins;
   } else {
     // Interactive selection for multiple plugins
     try {
-      const choices = marketplace.plugins.map((plugin) => ({
+      const choices = versionChecked.plugins.map((plugin) => ({
         name: `${chalk.bold(plugin.name.padEnd(25))} v${plugin.version}`,
         value: plugin.name,
         description: plugin.description.slice(0, 80),
@@ -119,7 +129,7 @@ export async function installCommand(
         return;
       }
 
-      selectedPlugins = marketplace.plugins.filter((p) =>
+      selectedPlugins = versionChecked.plugins.filter((p) =>
         selected.includes(p.name)
       );
     } catch (error) {

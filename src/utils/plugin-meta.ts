@@ -68,6 +68,65 @@ export function patchMarketplaceName(originalName: string): string {
 }
 
 /**
+ * Default version assigned when a plugin has no version in either
+ * marketplace.json or plugin.json.
+ */
+const DEFAULT_PLUGIN_VERSION = '1.0.0';
+
+/**
+ * Ensure every plugin entry in marketplace.json has a version field.
+ *
+ * For each plugin in the `plugins` array:
+ * 1. If it already has a non-empty `version`, keep it.
+ * 2. Otherwise, look up the plugin by name in `.claude-plugin/plugin.json`.
+ * 3. If still not found, fall back to DEFAULT_PLUGIN_VERSION ("1.0.0").
+ *
+ * Writes the updated marketplace.json back to disk when any version was filled in.
+ * Returns the (possibly updated) MarketplaceJson, or null on failure.
+ */
+export function ensurePluginVersions(pluginDir: string): MarketplaceJson | null {
+  const filePath = join(pluginDir, '.claude-plugin', 'marketplace.json');
+  if (!existsSync(filePath)) {
+    return null;
+  }
+  try {
+    const content = readFileSync(filePath, 'utf-8');
+    const marketplace = JSON.parse(content) as MarketplaceJson;
+    const pluginJson = readPluginJson(pluginDir);
+    let modified = false;
+
+    for (const plugin of marketplace.plugins) {
+      if (plugin.version && plugin.version.trim() !== '') {
+        continue;
+      }
+
+      // Try to get version from plugin.json by matching name
+      if (pluginJson && pluginJson.name === plugin.name && pluginJson.version) {
+        plugin.version = pluginJson.version;
+        console.log(
+          chalk.dim(`  Plugin "${plugin.name}" version set from plugin.json: v${plugin.version}`)
+        );
+      } else {
+        plugin.version = DEFAULT_PLUGIN_VERSION;
+        console.log(
+          chalk.dim(`  Plugin "${plugin.name}" version defaulted to: v${DEFAULT_PLUGIN_VERSION}`)
+        );
+      }
+      modified = true;
+    }
+
+    if (modified) {
+      writeFileSync(filePath, JSON.stringify(marketplace, null, 2) + '\n', 'utf-8');
+    }
+
+    return marketplace;
+  } catch {
+    console.error(chalk.red(`Error ensuring plugin versions in ${pluginDir}`));
+    return null;
+  }
+}
+
+/**
  * Update the marketplace.json name field in a plugin directory by appending
  * the tool suffix. This ensures the local marketplace name won't collide
  * with the upstream/official one, preventing Claude Code from overwriting
