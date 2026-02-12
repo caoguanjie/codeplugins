@@ -1,5 +1,10 @@
 <div align="center">
 
+<img src="./assets/logo.png" alt="CodePlugins" width="420" />
+
+<br/>
+<br/>
+
 # CodePlugins
 
 **Plugin Manager for Claude Code**
